@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Factura</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Numero</th>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <td th:text="${factura.fecha}">Mark</td>
+                        <td th:text="${factura.numero}">Otto</td>
+                    </tr>
+                    </tbody>
+
+                    <tr>
+                        <th scope="col">Nombre Cliente</th>
+                        <th scope="col">Tipo de Factura</th>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <td th:text="${factura.cliente.nombre}">Mark</td>
+                        <td th:text="${factura.letra}">Otto</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

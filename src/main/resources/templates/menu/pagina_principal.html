@@ -1,0 +1,63 @@
+<!doctype HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="menu/header :: head">
+        <title></title>
+    </head>
+    <body>
+        <header th:replace="menu/header :: header"></header>
+        <div class="container">
+            <head>
+
+                <meta charset="utf-8">
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <link rel="stylesheet"
+                      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                      crossorigin="anonymous">
+                <link rel="stylesheet" type="text/css" media="all"
+                      href="/static/js/estilogeneral.css"/>
+                <link rel="stylesheet" type="text/css"
+                      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <title th:text="${titulo}">titulo</title>
+            </head>
+            <body>
+                <div class="container">
+
+                    <div class="card card-menu">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="MENU"
+                                style="text-align: center;">Card title
+                            </h5>
+
+                            <div class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <th:block>
+                                        <tr>
+                                            <a th:href="@{/clientes/indexcliente}"
+                                               class="btn btn-primary btn-lg btn-block"><i class=""></i>Ver Clientes
+                                            </a>
+                                        </tr>
+                                        <tr>
+                                            <a th:href="@{/productos/index}"
+                                               class="btn btn-primary btn-lg btn-block"><i class=""></i>Ver
+                                                Productos
+                                            </a>
+                                        </tr>
+
+                                    </th:block>
+                                </tbody>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+    </body>
+</html>
