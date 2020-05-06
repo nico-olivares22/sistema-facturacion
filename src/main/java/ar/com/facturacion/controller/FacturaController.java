@@ -2,6 +2,7 @@ package ar.com.facturacion.controller;
 
 import ar.com.facturacion.dominio.*;
 import ar.com.facturacion.repositorio.*;
+import ar.com.facturacion.servicios.FacturacionServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -16,14 +18,16 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/facturas")
-
 public class FacturaController {
+
+
     @Autowired
     private EncabezadoRepositorio encabezadoRepositorio;
     private ItemRepositorio itemRepositorio;
     private PieRepositorio pieRepositorio;
     private ClienteRepositorio clienteRepositorio;
     private ProductoRepositorio productoRepositorio;
+
 
     public FacturaController(EncabezadoRepositorio encabezadoRepositorio, ItemRepositorio itemRepositorio,
                              PieRepositorio pieRepositorio, ClienteRepositorio clienteRepositorio, ProductoRepositorio productoRepositorio) {
@@ -104,7 +108,7 @@ public class FacturaController {
 
     @GetMapping("/listado")
     public String listadoFacturas(Model model){
-        List <Encabezado> facturas = encabezadoRepositorio.findAll();
+        List <Encabezado> facturas = encabezadoRepositorio.getAllByAnuladoIsFalse();
         model.addAttribute("facturas",facturas);
         return "facturas/listado_facturas";
     }
@@ -114,5 +118,14 @@ public class FacturaController {
         Encabezado encabezado = encabezadoRepositorio.findById(id).get();
         model.addAttribute("factura",encabezado);
         return "/facturas/factura";
+    }
+
+    @GetMapping("/delete-factura/{id}")
+    public String deleteFactura(@PathVariable Long id) {
+        Encabezado encabezado = encabezadoRepositorio.findById(id).get();
+        encabezado.setAnulado(true);
+        encabezadoRepositorio.save(encabezado);
+        return "redirect:/facturas/listado";
+
     }
 }

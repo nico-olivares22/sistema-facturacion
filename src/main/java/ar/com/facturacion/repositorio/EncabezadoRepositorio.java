@@ -13,4 +13,6 @@ import java.util.List;
 public interface EncabezadoRepositorio extends JpaRepository<Encabezado, Long>{
     //Encabezado getEncabezadoByCliente_Id(Long idCliente);
     Encabezado getFirstByCliente_IdOrderByIdDesc(Long idCliente);
+
+    List <Encabezado> getAllByAnuladoIsFalse();
 }

@@ -38,6 +38,8 @@
                         <td th:text="${factura.numero}">Otto</td>
                         <td><a th:href="@{/facturas/ver-factura/{id}(id=${factura.id})}"
                                class="btn btn-primary"><i class="fas fa-user-edit ml-2">Ver Factura</i></a></td>
+                        <td><a th:href="@{/facturas/delete-factura/{id}(id=${factura.id})}"
+                               class="btn btn-primary"><i class="fas fa-user-edit ml-2">ELiminar</i></a></td>
 
                     </tr>
 
