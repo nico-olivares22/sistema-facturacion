@@ -42,6 +42,7 @@
                         </tr>
                         </tbody>
 
+
                         <tr class="text-center">
                             <th scope="col">Cantidad</th>
                             <th scope="col">Codigo</th>
@@ -50,20 +51,16 @@
                             <th scope="col">Subtotal</th>
                         </tr>
                         <tbody>
-                        <tr class="text-center">
-                            <td>3</td>
-                            <td>97513</td>
-                            <td>Gaseosa</td>
-                            <td>60</td>
-                            <td>180</td>
-                        </tr>
-                        <tr class="text-center">
-                            <td>2</td>
-                            <td>97513</td>
-                            <td>Galletas</td>
-                            <td>25</td>
-                            <td>50</td>
-                        </tr>
+
+                        <th:block th:each="item : ${items}">
+                            <tr class="text-center">
+                                <td th:text="${item.cantidad}"></td>
+                                <td th:text="${item.producto.codigo}"></td>
+                                <td th:text="${item.producto.descripcion}"></td>
+                                <td th:text="${item.precioUnitario}"></td>
+                                <td th:text="${item.subTotal}"></td>
+                            </tr>
+                        </th:block>
                         </tbody>
 
                         <tr class="text-center">
@@ -72,8 +69,8 @@
                         </tr>
                         <tbody>
                         <tr class="text-center">
-                            <td>Descripcion Factura</td>
-                            <td>230</td>
+                            <td th:text="${pie.observaciones}"></td>
+                            <td th:text="${pie.total}"></td>
                         </tr>
                         </tbody>
                     </table>

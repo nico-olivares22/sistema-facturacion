@@ -41,6 +41,7 @@ public class FacturaController {
     @GetMapping ("/get-encabezado/{idCliente}")
     public String getEncabezado (@PathVariable Long idCliente, Model model){
 
+        model.addAttribute("tipoletra",TipoLetra.values());
         model.addAttribute("encabezado", new Encabezado());
         return "/facturas/regis_factura-encabezado";
     }
@@ -116,7 +117,11 @@ public class FacturaController {
     @GetMapping("/ver-factura/{id}")
     public String verFactura(@PathVariable Long id,Model model){
         Encabezado encabezado = encabezadoRepositorio.findById(id).get();
+        List <Item> items = itemRepositorio.findAllByEncabezado_Id(id);
+        Pie pie = pieRepositorio.getByEncabezado_Id(id);
         model.addAttribute("factura",encabezado);
+        model.addAttribute("items",items);
+        model.addAttribute("pie",pie);
         return "/facturas/factura";
     }
 
