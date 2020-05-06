@@ -50,13 +50,13 @@
                             <td th:text="${cliente.direccion}">Otto</td>
                             <td th:text="${cliente.cuit}">@mdo</td>
                             <td><a th:href="@{/clientes/edit/{id}(id=${cliente.id})}"
-                                   class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                   class="btn btn-warning"><i class="fas fa-user-edit ml-2">Editar</i></a></td>
                             <td><a
                                     th:href="@{/clientes/delete/{id}(id=${cliente.id})}"
-                                    class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    class="btn btn-danger"><i class="fas fa-user-times ml-2">Borrar</i></a></td>
                             <td><a
                                     th:href="@{/facturas/get-encabezado/{id}(id=${cliente.id})}"
-                                    class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    class="btn btn-primary"><i class="fas fa-user-times ml-2">Crear Factura</i></a></td>
                         </tr>
 
                     </th:block>

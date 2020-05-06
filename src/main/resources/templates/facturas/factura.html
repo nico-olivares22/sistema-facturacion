@@ -11,34 +11,74 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Numero</th>
-                    </tr>
-                    <tbody>
-                    <tr>
-                        <td th:text="${factura.fecha}">Mark</td>
-                        <td th:text="${factura.numero}">Otto</td>
-                    </tr>
-                    </tbody>
+        <div class="col-md-12">
+            <a class="btn btn-danger" href="#">Borrar Factura</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <tr class="text-center">
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Numero</th>
+                        </tr>
+                        <tbody>
+                        <tr class="text-center">
+                            <td th:text="${factura.fecha}">Mark</td>
+                            <td th:text="${factura.numero}">Otto</td>
+                        </tr>
+                        </tbody>
 
-                    <tr>
-                        <th scope="col">Nombre Cliente</th>
-                        <th scope="col">Tipo de Factura</th>
-                    </tr>
-                    <tbody>
-                    <tr>
-                        <td th:text="${factura.cliente.nombre}">Mark</td>
-                        <td th:text="${factura.letra}">Otto</td>
-                    </tr>
-                    </tbody>
-                </table>
+                        <tr class="text-center">
+                            <th scope="col">Nombre Cliente</th>
+                            <th scope="col">Tipo de Factura</th>
+                        </tr>
+                        <tbody>
+                        <tr class="text-center">
+                            <td th:text="${factura.cliente.nombre}">Mark</td>
+                            <td th:text="${factura.letra}">Otto</td>
+                        </tr>
+                        </tbody>
+
+
+                        <tr class="text-center">
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Precio Unitario</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                        <tbody>
+
+                        <th:block th:each="item : ${items}">
+                            <tr class="text-center">
+                                <td th:text="${item.cantidad}"></td>
+                                <td th:text="${item.producto.codigo}"></td>
+                                <td th:text="${item.producto.descripcion}"></td>
+                                <td th:text="${item.precioUnitario}"></td>
+                                <td th:text="${item.subTotal}"></td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+
+                        <tr class="text-center">
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                        <tbody>
+                        <tr class="text-center">
+                            <td th:text="${pie.observaciones}"></td>
+                            <td th:text="${pie.total}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 </body>
