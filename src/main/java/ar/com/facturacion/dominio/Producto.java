@@ -35,6 +35,8 @@ public class Producto implements Serializable {
 	@Size(min = 7,max = 255)
 	private String descripcion;
 
+	private Boolean borrado = false;
+
 	public Long getId() {
 		return id;
 	}
@@ -59,6 +61,10 @@ public class Producto implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public Boolean getBorrado(){ return borrado;}
+	public void setBorrado(Boolean borrado) { this.borrado = borrado;}
+
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion
