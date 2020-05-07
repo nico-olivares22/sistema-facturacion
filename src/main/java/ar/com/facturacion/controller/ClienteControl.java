@@ -33,10 +33,10 @@ public class ClienteControl {
     public String index_cliente(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         Page<Cliente> dataPage;
         if (!page.isPresent() && !size.isPresent()) {
-            dataPage = repository.findAll(PageRequest.of(currentPage - 1, pageSize));
+            dataPage = repository.findAllByBorradoIsFalse(PageRequest.of(currentPage - 1, pageSize));
         }
         else {
-            dataPage = repository.findAll(PageRequest.of(page.get() - 1, size.get()));
+            dataPage = repository.findAllByBorradoIsFalse(PageRequest.of(page.get() - 1, size.get()));
         }
         int totalPages = dataPage.getTotalPages();
         if (totalPages > 0) {
@@ -94,11 +94,11 @@ public class ClienteControl {
         return "redirect:/clientes/indexcliente";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping(value = "/delete-cliente/{id}")
     public String deleteCliente(@PathVariable("id") Long id, Model model) {
-        Cliente cliente = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de cliente invalido:" + id));
-        repository.delete(cliente);
+        Cliente cliente = repository.findById(id).get();
+        cliente.setBorrado(true);
+        repository.save(cliente);
         return "redirect:/clientes/indexcliente";
     }
 }

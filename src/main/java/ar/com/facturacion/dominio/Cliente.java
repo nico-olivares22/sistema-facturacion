@@ -43,6 +43,8 @@ public class Cliente implements Serializable {
 	@Size(min = 8,max = 13)
 	private String cuit;
 
+	private Boolean borrado = false;
+
 	public Long getId() {
 		return id;
 	}
@@ -73,6 +75,10 @@ public class Cliente implements Serializable {
 	public void setCuit(String cuit) {
 		this.cuit = cuit;
 	}
+
+	public Boolean getBorrado(){ return borrado;}
+	public void setBorrado(Boolean borrado) { this.borrado = borrado;}
+
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion
