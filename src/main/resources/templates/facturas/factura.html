@@ -10,33 +10,41 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-danger" href="#">Borrar Factura</a>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <table class="table">
                         <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Numero</th>
                         </tr>
                         <tbody>
                         <tr class="text-center">
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td th:text="${factura.fecha}">Mark</td>
                             <td th:text="${factura.numero}">Otto</td>
                         </tr>
                         </tbody>
 
                         <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                             <th scope="col">Nombre Cliente</th>
                             <th scope="col">Tipo de Factura</th>
                         </tr>
                         <tbody>
                         <tr class="text-center">
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td th:text="${factura.cliente.nombre}">Mark</td>
                             <td th:text="${factura.letra}">Otto</td>
                         </tr>
@@ -64,17 +72,31 @@
                         </tbody>
 
                         <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Total</th>
                         </tr>
                         <tbody>
                         <tr class="text-center">
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td th:text="${pie.observaciones}"></td>
                             <td th:text="${pie.total}"></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="button" style="text-align: right;">
+                <a class="btn btn-danger" href="#">Borrar Factura</a>
             </div>
         </div>
     </div>
