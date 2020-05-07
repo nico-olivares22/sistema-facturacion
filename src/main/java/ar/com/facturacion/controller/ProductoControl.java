@@ -32,9 +32,11 @@ public class ProductoControl {
 	public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		Page<Producto> dataPage;
 		if (!page.isPresent() && !size.isPresent()) {
-			dataPage = repository.findAll(PageRequest.of(currentPage - 1, pageSize));
+			//dataPage = repository.findAll(PageRequest.of(currentPage - 1, pageSize));
+			dataPage = repository.findAllByBorradoIsFalse(PageRequest.of(currentPage-1, pageSize));
 		} else {
-			dataPage = repository.findAll(PageRequest.of(page.get() - 1, size.get()));
+			//dataPage = repository.findAll(PageRequest.of(page.get() - 1, size.get()));
+			dataPage = repository.findAllByBorradoIsFalse(PageRequest.of(page.get() -1, pageSize));
 		}
 		int totalPages = dataPage.getTotalPages();
 		if (totalPages > 0) {
@@ -50,6 +52,7 @@ public class ProductoControl {
 	public String showSignUpForm(Producto producto) {
 		return "productos/registro_prod";
 	}
+
 
 	@PostMapping("add")
 	public String addProducto(@Valid Producto producto, BindingResult result, Model model) {
@@ -93,11 +96,11 @@ public class ProductoControl {
 		redirectAttributes.addFlashAttribute("mensaje","¡Producto Modificado Correctamente!");
 		return "redirect:/productos/index";
 	}
-	@GetMapping(value = "/delete/{id}")
-	public String deleteProducto(@PathVariable("id") long id, Model model) {
-		Producto producto = repository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid Producto ID:" + id));
-		repository.delete(producto);
+	@GetMapping(value = "/delete-producto/{id}")
+	public String deleteProducto(@PathVariable Long id) {
+		Producto producto = repository.findById(id).get();
+		producto.setBorrado(true);
+		repository.save(producto);
 		return "redirect:/productos/index";
 	}
 
