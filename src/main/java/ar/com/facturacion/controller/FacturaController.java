@@ -6,6 +6,7 @@ import ar.com.facturacion.servicios.FacturacionServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +48,10 @@ public class FacturaController {
     }
 
     @PostMapping("/post-encabezado/{idCliente}")
-    public String postEncabezado (@PathVariable Long idCliente, @Valid Encabezado encabezado){
+    public String postEncabezado (@PathVariable Long idCliente, @Valid Encabezado encabezado, BindingResult result){
+        if (result.hasErrors()) {
+            return "/facturas/regis_factura-encabezado";
+        }
         Cliente cliente = clienteRepositorio.findById(idCliente).get();
         encabezado.setAnulado(false);
         encabezado.setCliente(cliente);
@@ -64,7 +68,10 @@ public class FacturaController {
     }
 
     @PostMapping("/post-item/{idCliente}")
-    public String postItem (@PathVariable Long idCliente, @Valid Item item){
+    public String postItem (@PathVariable Long idCliente, @Valid Item item, BindingResult result){
+        if (result.hasErrors()) {
+            return "/facturas/regis_factura-item";
+        }
         Encabezado encabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);
         item.setEncabezado(encabezado);
         BigDecimal sum = item.CalcularSubTotal();
@@ -93,7 +100,10 @@ public class FacturaController {
     }
 
     @PostMapping("/post-pie/{idCliente}")
-    public String postPie (@PathVariable Long idCliente, @Valid Pie pie){
+    public String postPie (@PathVariable Long idCliente, @Valid Pie pie, BindingResult result){
+        if (result.hasErrors()) {
+            return "/facturas/regis_factura-pie";
+        }
         Encabezado encabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);
         Long id = encabezado.getId();
         List <Item> items = itemRepositorio.findAllByEncabezado_Id(id);//Agregado

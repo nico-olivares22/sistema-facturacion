@@ -63,21 +63,6 @@ public class ClienteControl {
         return "redirect:/clientes/indexcliente";
     }
 
-
-
-    /*@RequestMapping(value = "/registrar")
-    public String registroPost(@Valid Cliente cliente, Errors errors, Model model){
-        if (errors.hasErrors()){
-            return "clientes/registro_cliente";
-        }
-
-        model.addAttribute("cliente",new Cliente());
-        model.addAttribute("clienteInfo",cliente);
-        if(cliente.getId()==null){
-            repository.save(cliente);
-        }
-        return "clientes/registro_cliente";
-    }*/
     @GetMapping("signup")
     public String showClientForm(Cliente cliente) {
         return "clientes/registro_cliente";

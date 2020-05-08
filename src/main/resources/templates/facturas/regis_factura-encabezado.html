@@ -28,38 +28,27 @@
                             <div class="form-group col-md-6">
                                 <label for="fecha" class="col-form-label">Fecha</label> <input
                                     type="date" pattern="yyyy-MM-dd" th:field="*{fecha}" class="form-control" id="fecha"
-                                    placeholder="Fecha"> <span
-                                    th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"
-                                    class="text-danger"></span>
+                                    placeholder="Fecha"
+                                    required>
+                                <span
+                                        th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"
+                                        class="text-danger"></span>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="numero" class="col-form-label">Numero de Factura</label> <input
                                     type="text" th:field="*{numero}" class="form-control" id="numero"
-                                    placeholder="Numero"> <span
+                                    placeholder="Numero" required> <span
                                     th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"
                                     class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-8">
-                                <!--<label for="letra" class="col-form-label">Letra</label> <input
-                                    type="text" th:field="*{letra}" class="form-control" id="letra"
-                                    placeholder="Letra"> <span
-                                    th:if="${#fields.hasErrors('letra')}" th:errors="*{letra}"
-                                    class="text-danger"></span>-->
                                 <select class="form-control" th:field="*{letra}" required>
-                                    <option value="null" hidden>Seleccione el tipo de factura</option>
+                                    <option value="null" hidden required>Seleccione el tipo de factura</option>
                                     <option th:each="letra : ${tipoletra}" th:value="${letra}"
-                                            th:text="${letra.toString()}"></option>
+                                            th:text="${letra.toString()}" required></option>
                                 </select>
                             </div>
-
-                            <!--<div class="form-group col-md-8">
-                                <label for="anulado" class="col-form-label">Anulado</label> <input
-                                    type="text" th:field="*{anulado}" class="form-control" id="anulado"
-                                    placeholder="Anulado"> <span
-                                    th:if="${#fields.hasErrors('anulado')}" th:errors="*{anulado}"
-                                    class="text-danger"></span>
-                            </div>-->
 
                             <div class="form-group col-md-8">
                                 <input type="submit" class="btn btn-primary" value="Crear encabezado">
