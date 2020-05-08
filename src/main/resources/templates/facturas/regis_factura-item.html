@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/main_layout}">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="menu/header :: head">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Update User</title>
@@ -16,6 +15,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<header th:replace="menu/header :: header"></header>
 <div layout:fragment="content" class="container">
     <div class="container my-5">
         <h3> Agregar Factura Item</h3>
@@ -24,14 +24,6 @@
                 <div class="col-md-8">
                     <form method="post" th:action="@{/facturas/post-item/{id}(id=${idCliente})}" th:object="${item}">
                         <div class="row">
-                            <!--<div class="form-group col-md-6">
-                                <label for="productos_id" class="col-form-label">productos.ID</label>
-                                <input
-                                        type="number" th:field="*{producto}" class="form-control" id="productos_id"
-                                        placeholder="Productos_id"> <span
-                                    th:if="${#fields.hasErrors('producto')}" th:errors="*{producto}"
-                                    class="text-danger"></span>
-                            </div>-->
                             <h2>Seleccione los Productos de la Factura</h2>
                             <hr/>
 
@@ -41,10 +33,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <select class="form-control form-control-lg" name="producto" th:field="*{producto}"
-                                            th:class="${#fields.hasErrors('producto')} ? 'form-control form-control-danger' : (*{producto == null} ? 'form-control' : 'form-control form-control-success')">
+                                            required>
                                         <option value="null" hidden>Seleccione un producto...</option>
                                         <option th:each="producto : ${productos}" th:value="${producto.id}"
-                                                th:text="${producto.nombre}"></option>
+                                                th:text="${producto.nombre}" required></option>
                                     </select>
                                 </div>
                                 <div th:if="${#fields.hasErrors('producto')}" class="form-control-feedback">El producto
@@ -56,25 +48,19 @@
                             <div class="form-group col-md-8">
                                 <label for="cantidad" class="col-form-label">Cantidad</label> <input
                                     type="number" th:field="*{cantidad}" class="form-control" id="cantidad"
-                                    placeholder="Cantidad"> <span
+                                    placeholder="Cantidad"
+                                    required="required"> <span
                                     th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"
                                     class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="precioUnitario" class="col-form-label">Precio</label> <input
                                     type="number" th:field="*{precioUnitario}" class="form-control" id="precioUnitario"
-                                    placeholder="Precio_unitario"> <span
+                                    placeholder="Precio_unitario"
+                                    required="required"> <span
                                     th:if="${#fields.hasErrors('precioUnitario')}" th:errors="*{precioUnitario}"
                                     class="text-danger"></span>
                             </div>
-
-                            <!--<div class="form-group col-md-8">
-                                <label for="subTotal" class="col-form-label">SubTotal</label> <input
-                                    type="text" th:field="*{subTotal}" class="form-control" id="subTotal"
-                                    placeholder="SubTotal"> <span
-                                    th:if="${#fields.hasErrors('subTotal')}" th:errors="*{subTotal}"
-                                    class="text-danger"></span>
-                            </div>-->
 
                             <div class="form-group col-md-8">
                                 <input type="submit"
