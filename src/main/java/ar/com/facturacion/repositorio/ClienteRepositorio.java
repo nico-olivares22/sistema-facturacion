@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ar.com.facturacion.dominio.Cliente;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface ClienteRepositorio extends JpaRepository<Cliente, Long>{
 	Cliente findByNombreContaining(String nombre);
 

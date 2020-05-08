@@ -32,7 +32,7 @@
 
                     <table class="table" style="padding-top: 20px;">
                         <thead class="thead-dark">
-                        <tr>
+                        <tr style="text-align: center">
 
                             <th scope="col">#</th>
                             <th scope="col">C&oacute;digo</th>
@@ -48,7 +48,7 @@
 
                         <th:block th:each="cliente : ${data.content}">
 
-                            <tr>
+                            <tr style="text-align: center">
                                 <th th:text="${cliente.id}">1</th>
                                 <td th:text="${cliente.codigo}">Mark</td>
                                 <td th:text="${cliente.nombre}">Otto</td>
