@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/main_layout}">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="menu/header :: head">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Update User</title>
@@ -16,6 +15,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<header th:replace="menu/header :: header"></header>
 <div layout:fragment="content" class="container">
     <div class="container my-5">
         <h3> Agregar Factura Item</h3>

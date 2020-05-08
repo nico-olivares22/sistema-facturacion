@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="menu/header :: head">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Update User</title>
@@ -15,6 +15,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<header th:replace="menu/header :: header"></header>
 <div class="container my-5">
     <h3> Agregar Factura Pie</h3>
     <div class="card">

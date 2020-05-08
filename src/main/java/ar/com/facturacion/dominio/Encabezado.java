@@ -1,6 +1,7 @@
 package ar.com.facturacion.dominio;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Encabezado implements Serializable {
 	
 	private Long id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date fecha;
+	private LocalDate fecha;
 	private String numero;
 	private String letra;
 	@OneToOne
@@ -38,10 +39,10 @@ public class Encabezado implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public String getNumero() {
