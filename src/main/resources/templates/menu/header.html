@@ -9,7 +9,6 @@
     <body>
         <header th:fragment="header">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <!--<a class="navbar-brand" href="/facturas/menu">Products System</a>-->
                 <a class="navbar-brand" th:href="@{/facturas/menu}">
                     <img th:src="@{/imagenes/logo.png}" width="30" height="30" class="d-inline-block align-top" alt="">
                     Products System
@@ -33,7 +32,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="/facturas/listado">Listado Facturas</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -46,9 +45,6 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
                 </div>

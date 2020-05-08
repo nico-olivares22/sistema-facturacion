@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="menu/header :: head">
     <meta charset="UTF-8">
     <title>Ver Factura</title>
     <link rel="stylesheet"
@@ -9,6 +9,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<header th:replace="menu/header :: header"></header>
 <div class="container">
 
     <div class="row">
