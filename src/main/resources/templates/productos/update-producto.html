@@ -17,14 +17,14 @@
 <body>
 <header th:replace="menu/header :: header"></header>
 <div class="container my-5">
-    <h3> Update Producto</h3>
+    <h3 style="text-align: center"> Actualizar Producto</h3>
     <div class="card">
         <div class="card-body">
             <div class="col-md-8">
                 <form method="post" th:action="@{/productos/update/{id}(id=${producto.id})}" th:object="${producto}">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="codigo" class="col-form-label">Codigo</label> <input
+                            <label for="codigo" class="col-form-label">Código</label> <input
                                 type="text" th:field="*{codigo}" class="form-control" id="codigo"
                                 placeholder="Name"> <span
                                 th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"
@@ -38,7 +38,7 @@
                                 class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
-                            <label for="descripcion" class="col-form-label">Descripcion</label> <input
+                            <label for="descripcion" class="col-form-label">Descripción</label> <input
                                 type="text" th:field="*{descripcion}" class="form-control" id="descripcion"
                                 placeholder="Descripcion"> <span
                                 th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"
@@ -47,7 +47,7 @@
 
                         <div class="form-group col-md-8">
                             <input type="submit" class="btn btn-primary"
-                                   value="Update Producto">
+                                   value="Actualizar Producto">
                         </div>
                     </div>
                 </form>
