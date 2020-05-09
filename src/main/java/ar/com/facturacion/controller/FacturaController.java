@@ -166,4 +166,9 @@ public class FacturaController {
         return "redirect:/facturas/listado";
 
     }
+
+    @GetMapping("/menu")
+        public String menu(){
+            return "/menu/pagina_principal";
+        }
 }
