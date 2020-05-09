@@ -53,13 +53,11 @@ public class ClienteControl {
         Cliente cliente =repository.findById(id).get();
         model.addAttribute("titulo","Modificado de Cliente");
         model.addAttribute("cliente", cliente);
-        //model.addAttribute("action","/producto/modificar/"+id);
         return "clientes/update-cliente";
     }
     @PostMapping(value="/update/{id}")
-    public String updateCliente(@Valid Cliente cliente, RedirectAttributes redirectAttributes){
+    public String updateCliente(@Valid Cliente cliente){
         repository.save(cliente);
-        redirectAttributes.addFlashAttribute("mensaje","Cliente Modificado Correctamente!");
         return "redirect:/clientes/indexcliente";
     }
 
@@ -80,7 +78,7 @@ public class ClienteControl {
     }
 
     @GetMapping(value = "/delete-cliente/{id}")
-    public String deleteCliente(@PathVariable("id") Long id, Model model) {
+    public String deleteCliente(@PathVariable("id") Long id) {
         Cliente cliente = repository.findById(id).get();
         cliente.setBorrado(true);
         repository.save(cliente);
