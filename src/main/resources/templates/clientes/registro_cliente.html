@@ -8,8 +8,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-
-
+    <title>Registrar Cliente</title>
 </head>
 <body>
 <header th:replace="menu/header :: header"></header>
@@ -36,7 +35,8 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-fw fa-user fa" aria-hidden="true"></i></span>
-                    <input th:field="*{codigo}" type="text" th:class="${#fields.hasErrors('codigo')} ? 'form-control form-control-danger' : (*{codigo == null} ? 'form-control' : 'form-control form-control-success')" placeholder="introduzca codigo del Cliente" required="required"/>
+                    <input th:field="*{codigo}" type="text"
+                           th:class="${#fields.hasErrors('codigo')} ? 'form-control form-control-danger' : (*{codigo == null} ? 'form-control' : 'form-control form-control-success')" placeholder="introduzca codigo del Cliente" required="required"/>
                 </div>
                 <div th:if="${#fields.hasErrors('codigo')}" class="form-control-feedback">El codigo debe contener entre 4 y 13 caracteres</div>
             </div>
