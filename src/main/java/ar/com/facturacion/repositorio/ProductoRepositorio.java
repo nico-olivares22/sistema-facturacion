@@ -17,9 +17,9 @@ public interface ProductoRepositorio extends JpaRepository<Producto, Long>{
 
 	Page<Producto> getAllByBorradoIsFalse( Pageable page);
 
-	//Page <Producto> findAllByBorradoIsFalse(Pageable page);
-
 	Page <Producto> findAllByBorradoIsFalse(Pageable page);
+
+	List <Producto> findAllByBorradoIsFalse();
 
 
 }

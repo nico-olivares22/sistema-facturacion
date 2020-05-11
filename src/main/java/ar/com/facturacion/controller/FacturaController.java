@@ -68,7 +68,7 @@ public class FacturaController {
 
     @GetMapping("/get-item/{idCliente}")
     public String getItem (@PathVariable Long idCliente, Model model){
-        List<Producto> productos = productoRepositorio.findAll(); //traemos todos los productos
+        List<Producto> productos = productoRepositorio.findAllByBorradoIsFalse(); //traemos todos los productos
         model.addAttribute("productos", productos);
         model.addAttribute("item", new Item());
         return "/facturas/regis_factura-item";
