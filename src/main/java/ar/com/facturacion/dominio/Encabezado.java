@@ -1,21 +1,13 @@
 package ar.com.facturacion.dominio;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -33,24 +25,24 @@ public class Encabezado implements Serializable {
 	
 	private Long id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date fecha;
+	private LocalDate fecha;
 	private String numero;
 	private String letra;
 	@OneToOne
 	private Cliente cliente;
 	@OneToMany(mappedBy = "encabezado")
 	private List<Item> items;
-	private Boolean anulado;
+	private Boolean anulado = true;
 	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public String getNumero() {

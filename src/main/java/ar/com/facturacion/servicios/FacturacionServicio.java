@@ -1,18 +1,11 @@
 package ar.com.facturacion.servicios;
-
-import java.util.List;
-
 import ar.com.facturacion.dominio.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import ar.com.facturacion.repositorio.EncabezadoRepositorio;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FacturacionServicio {
-	
-	
-	
-	public void facturar(Cliente cliente, List<Producto> productos) {
-		
-	}
+
+
 }
