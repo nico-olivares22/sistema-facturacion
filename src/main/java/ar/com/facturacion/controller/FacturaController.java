@@ -135,10 +135,10 @@ public class FacturaController {
     public String listadoFacturas(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         Page<Encabezado> dataPage;
         if (!page.isPresent() && !size.isPresent()) {
-            dataPage = encabezadoRepositorio.findAllByAnuladoIsFalse(PageRequest.of(currentPage - 1, pageSize));
+            dataPage = encabezadoRepositorio.findAllByAnuladoIsFalseOrderByFecha(PageRequest.of(currentPage - 1, pageSize));
         }
         else {
-            dataPage = encabezadoRepositorio.findAllByAnuladoIsFalse( PageRequest.of(page.get() - 1, size.get()));
+            dataPage = encabezadoRepositorio.findAllByAnuladoIsFalseOrderByFecha( PageRequest.of(page.get() - 1, size.get()));
         }
         int totalPages = dataPage.getTotalPages();
         if (totalPages > 0) {

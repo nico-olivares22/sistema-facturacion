@@ -10,6 +10,6 @@ import ar.com.facturacion.dominio.Encabezado;
 
 public interface EncabezadoRepositorio extends JpaRepository<Encabezado, Long>{
     Encabezado getFirstByCliente_IdOrderByIdDesc(Long idCliente);
-    Page <Encabezado> findAllByAnuladoIsFalse(Pageable page);
+    Page <Encabezado> findAllByAnuladoIsFalseOrderByFecha(Pageable page);
 
 }
