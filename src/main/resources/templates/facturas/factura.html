@@ -7,44 +7,34 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link rel="icon" th:href="@{/imagenes/logo.png}">
 </head>
 <body>
 <header th:replace="menu/header :: header"></header>
+<br><br>
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3" style="text-align: right">
+                                <img th:src="@{/imagenes/logo.png}" height="120" class="align-content-center" alt="">
+                        </div>
+                        <div class="col-md-3" style="text-align: left;margin-top: 25px">
+                            <h3>Products System</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" style="font-weight: bold">
+                                <h5 th:text="'Fecha: '+${#temporals.format(factura.fecha, 'dd-MM-yyyy')}"></h5>
+                                <h5 th:text="'Número de Factura: '+${factura.numero}"></h5>
+                                <h5 th:text="'Letra: '+${factura.letra}"></h5>
+                                <h5 th:text="'Cliente: '+${factura.cliente.nombre}"></h5>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-bordered">
-                        <tr class="text-center">
-                            <th colspan="3" scope="col"></th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Número</th>
-                        </tr>
-                        <tbody>
-                        <tr class="text-center">
-                            <td colspan="3"></td>
-                            <td th:text="${#temporals.format(factura.fecha, 'dd-MM-yyyy')}">Mark</td>
-                            <td th:text="${factura.numero}">Otto</td>
-                        </tr>
-                        </tbody>
-
-                        <tr class="text-center">
-                            <th colspan="3" scope="col"></th>
-                            <th scope="col">Nombre Cliente</th>
-                            <th scope="col">Tipo de Factura</th>
-                        </tr>
-                        <tbody>
-                        <tr class="text-center">
-                            <td colspan="3"></td>
-                            <td th:text="${factura.cliente.nombre}">Mark</td>
-                            <td th:text="${factura.letra}">Otto</td>
-                        </tr>
-                        </tbody>
-
-
-                        <tr class="text-center">
+                        <tr class="text-center thead-dark">
                             <th scope="col">Cantidad</th>
                             <th scope="col">Código</th>
                             <th scope="col">Descripción</th>
@@ -64,7 +54,7 @@
                         </th:block>
                         </tbody>
 
-                        <tr class="text-center">
+                        <tr class="text-center thead-dark">
                             <th colspan="3" scope="col"></th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Total</th>
