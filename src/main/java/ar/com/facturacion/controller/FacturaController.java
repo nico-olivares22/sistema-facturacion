@@ -58,15 +58,24 @@ public class FacturaController {
     }
 
     @PostMapping("/post-encabezado/{idCliente}")
-    public String postEncabezado (@PathVariable Long idCliente, @Valid Encabezado encabezado, BindingResult result){
+    public String postEncabezado (@PathVariable Long idCliente, @Valid Encabezado encabezado, BindingResult result, RedirectAttributes redirectAttributes){
         if (result.hasErrors()) {
             return "/facturas/regis_factura-encabezado";
         }
-        Cliente cliente = clienteRepositorio.findById(idCliente).get();
-        encabezado.setAnulado(false);
-        encabezado.setCliente(cliente);
-        encabezadoRepositorio.save(encabezado);
-        return "redirect:/facturas/get-item/{idCliente}";
+        if (encabezadoRepositorio.findAllByNumero(encabezado.getNumero()).isEmpty()){
+            Cliente cliente = clienteRepositorio.findById(idCliente).get();
+            encabezado.setAnulado(false);
+            encabezado.setCliente(cliente);
+            encabezadoRepositorio.save(encabezado);
+            System.out.println("BIen");
+            return "redirect:/facturas/get-item/{idCliente}";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("encabezadoMensaje", "Error, Ese Número de Factura Existe");
+            System.out.println("Error");
+            return "redirect:/facturas/get-encabezado/{idCliente}";
+        }
+
     }
 
     @GetMapping("/get-item/{idCliente}")

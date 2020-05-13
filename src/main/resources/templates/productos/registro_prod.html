@@ -13,14 +13,21 @@
 <body>
 <header th:replace="menu/header :: header"></header>
 <div class="container">
-    <div class="col-sm-6" th:if="${productoInfo}" th:object="${productoInfo}">
-        <div class="card mt-3">
-            <h3 class="card-header">Producto</h3>
-            <div class="card-block">
-                <h4 class="card-title" th:text="*{codigo}"></h4>
-                <h5 class="card-subtitle mb-4 text-muted" th:text="*{nombre}"></h5>
-                <h6 class="card-subtitle mb-4 text-muted"><i class="fas fa-list-ul" aria-hidden="true"></i> [[*{descripcion}]]</h6>
-            </div>
+    <div th:fragment="flash-warning" th:if="${msg}!=null">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <h5 th:text="${msg}" style="text-align: center"></h5>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div th:fragment="flash-success" th:if="${mensaje}!=null">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h5 th:text="${mensaje}" style="text-align: center"></h5>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     </div>
 
@@ -32,10 +39,15 @@
             <label for="codigo" class="col-sm-2 col-form-label">Código</label>
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-fw fa-user fa" aria-hidden="true"></i></span>
-                    <input th:field="*{codigo}" type="text" th:class="${#fields.hasErrors('codigo')} ? 'form-control form-control-danger' : (*{codigo == null} ? 'form-control' : 'form-control form-control-success')" placeholder="introduzca codigo de producto" required="required"/>
+                            <span class="input-group-addon"><i class="fa fa-fw fa-user fa"
+                                                               aria-hidden="true"></i></span>
+                    <input th:field="*{codigo}" type="text"
+                           th:class="${#fields.hasErrors('codigo')} ? 'form-control form-control-danger' : (*{codigo == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="introduzca codigo de producto" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('codigo')}" class="form-control-feedback">El codigo debe contener entre 5 y 13 caracteres</div>
+                <div th:if="${#fields.hasErrors('codigo')}" class="form-control-feedback">El codigo debe
+                    contener entre 5 y 13 caracteres
+                </div>
             </div>
         </div>
 
@@ -43,10 +55,15 @@
             <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-fw fa-user fa" aria-hidden="true"></i></span>
-                    <input th:field="*{nombre}" type="text" th:class="${#fields.hasErrors('nombre')} ? 'form-control form-control-danger' : (*{nombre == null} ? 'form-control' : 'form-control form-control-success')" placeholder="Ingrese nombre producto" required="required"/>
+                            <span class="input-group-addon"><i class="fa fa-fw fa-user fa"
+                                                               aria-hidden="true"></i></span>
+                    <input th:field="*{nombre}" type="text"
+                           th:class="${#fields.hasErrors('nombre')} ? 'form-control form-control-danger' : (*{nombre == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="Ingrese nombre producto" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('nombre')}" class="form-control-feedback">El nombre debe contener entre 4 y 50 caracteres</div>
+                <div th:if="${#fields.hasErrors('nombre')}" class="form-control-feedback">El nombre debe
+                    contener entre 4 y 50 caracteres
+                </div>
             </div>
         </div>
 
@@ -54,10 +71,15 @@
             <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i></span>
-                    <input th:field="*{descripcion}" type="text" th:class="${#fields.hasErrors('descripcion')} ? 'form-control form-control-danger' : (*{descripcion == null} ? 'form-control' : 'form-control form-control-success')" placeholder="Ingrese descripcion de producto" required="required"/>
+                            <span class="input-group-addon"><i class="fa fa-fw fa-envelope"
+                                                               aria-hidden="true"></i></span>
+                    <input th:field="*{descripcion}" type="text"
+                           th:class="${#fields.hasErrors('descripcion')} ? 'form-control form-control-danger' : (*{descripcion == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="Ingrese descripcion de producto" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('descripcion')}" class="form-control-feedback">La descripcion debe tener entre 7 y 255 caracteres</div>
+                <div th:if="${#fields.hasErrors('descripcion')}" class="form-control-feedback">La descripcion
+                    debe tener entre 7 y 255 caracteres
+                </div>
             </div>
         </div>
 
