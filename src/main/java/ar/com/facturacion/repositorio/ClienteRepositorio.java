@@ -12,8 +12,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ClienteRepositorio extends JpaRepository<Cliente, Long>{
-	Cliente findByNombreContaining(String nombre);
-
-
 	Page<Cliente> findAllByBorradoIsFalse(Pageable page);
 }

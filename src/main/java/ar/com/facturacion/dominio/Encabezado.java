@@ -24,7 +24,7 @@ public class Encabezado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private Long id;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fecha;
 	private String numero;
 	private String letra;
