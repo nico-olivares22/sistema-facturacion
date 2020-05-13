@@ -1,14 +1,17 @@
 package ar.com.facturacion.controller;
 
 import ar.com.facturacion.dominio.*;
+import ar.com.facturacion.editor.LocalDateEditor;
 import ar.com.facturacion.repositorio.*;
 import ar.com.facturacion.servicios.FacturacionServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -68,7 +71,11 @@ public class FacturaController {
 
     @GetMapping("/get-item/{idCliente}")
     public String getItem (@PathVariable Long idCliente, Model model){
+        Encabezado idEncabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);
         List<Producto> productos = productoRepositorio.findAllByBorradoIsFalse(); //traemos todos los productos
+        List<Item> items = itemRepositorio.findAllByEncabezado_Id(idEncabezado.getId());
+        model.addAttribute("encabezado",idEncabezado);
+        model.addAttribute("items", items);
         model.addAttribute("productos", productos);
         model.addAttribute("item", new Item());
         return "/facturas/regis_factura-item";
@@ -171,4 +178,20 @@ public class FacturaController {
         public String menu(){
             return "/menu/pagina_principal";
         }
+
+    @InitBinder("encabezado")
+    protected void initBinder(WebDataBinder binder){
+        StringTrimmerEditor stringtrimmer = new StringTrimmerEditor(false);
+        binder.registerCustomEditor(String.class, stringtrimmer);
+        binder.registerCustomEditor(LocalDate.class, new LocalDateEditor());
+    }
+
+    @GetMapping(value = "/delete-item/{idItem}")
+    public String deleteItem(@PathVariable("idItem") Long idItem) {
+        Item item = itemRepositorio.findById(idItem).get();
+        Encabezado encabezado = item.getEncabezado();
+        Long idCliente = encabezado.getCliente().getId();
+        itemRepositorio.delete(item);
+        return "redirect:/facturas/get-item/"+ idCliente;
+}
 }

@@ -34,7 +34,7 @@
 
                     <tr style="text-align: center">
                         <th th:text="${factura.cliente.nombre}">1</th>
-                        <td th:text="${factura.fecha}">Mark</td>
+                        <td th:text="${#temporals.format(factura.fecha, 'dd-MM-yyyy')}">Mark</td>
                         <td th:text="${factura.letra}">Otto</td>
                         <td th:text="${factura.numero}">Otto</td>
                         <td><a th:href="@{/facturas/ver-factura/{id}(id=${factura.id})}"
