@@ -56,32 +56,40 @@ public class ClienteControl {
         return "clientes/update-cliente";
     }
     @PostMapping(value="/update/{id}")
-    public String updateCliente(@Valid Cliente cliente){
+    public String updateCliente(@Valid Cliente cliente, RedirectAttributes redirectAttributes){
         repository.save(cliente);
+        redirectAttributes.addFlashAttribute("mensaje", "Cliente Modificado con Éxito"); //success
         return "redirect:/clientes/indexcliente";
     }
 
     @GetMapping("signup")
-    public String showClientForm(Cliente cliente) {
+    public String showClientForm(Model model) {
+        model.addAttribute("cliente", new Cliente());
         return "clientes/registro_cliente";
     }
 
     @PostMapping("add")
-    public String addCliente(@Valid Cliente cliente, BindingResult result, Model model) {
+    public String addCliente(@Valid Cliente cliente, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "clientes/registro_cliente";
         }
-        model.addAttribute("cliente", new Cliente());
-        model.addAttribute("clienteInfo", cliente);
-        repository.save(cliente);
-        return "redirect:/clientes/indexcliente";
+        if(repository.findAllByCuit(cliente.getCuit()).isEmpty()){
+            repository.save(cliente);
+            redirectAttributes.addFlashAttribute("mensaje", "Cliente Agregado Exitosamente");
+            return "redirect:/clientes/indexcliente";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("mensajeWarning", "Error, Ese Cuit Existe");
+            return "redirect:/clientes/signup";
+        }
     }
 
     @GetMapping(value = "/delete-cliente/{id}")
-    public String deleteCliente(@PathVariable("id") Long id) {
+    public String deleteCliente(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         Cliente cliente = repository.findById(id).get();
         cliente.setBorrado(true);
         repository.save(cliente);
+        redirectAttributes.addFlashAttribute("mensaje", "Cliente Eliminado"); //danger
         return "redirect:/clientes/indexcliente";
     }
 }
