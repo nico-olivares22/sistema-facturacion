@@ -14,5 +14,5 @@ import java.util.List;
 public interface ClienteRepositorio extends JpaRepository<Cliente, Long>{
 	Page<Cliente> findAllByBorradoIsFalse(Pageable page);
 
-	List <Cliente> findAllByCuit(String cuit);
+	List <Cliente> findAllByCuit(String cuit); //consulta validador
 }
