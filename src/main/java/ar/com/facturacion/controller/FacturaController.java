@@ -62,12 +62,11 @@ public class FacturaController {
         if (result.hasErrors()) {
             return "/facturas/regis_factura-encabezado";
         }
-        if (encabezadoRepositorio.findAllByNumero(encabezado.getNumero()).isEmpty()){
+        if (encabezadoRepositorio.findAllByNumero(encabezado.getNumero()).isEmpty() || encabezadoRepositorio.findAllByAnuladoIsFalse().isEmpty()) { //validador Número de Factura
             Cliente cliente = clienteRepositorio.findById(idCliente).get();
             encabezado.setAnulado(false);
             encabezado.setCliente(cliente);
             encabezadoRepositorio.save(encabezado);
-            System.out.println("BIen");
             return "redirect:/facturas/get-item/{idCliente}";
         }
         else {

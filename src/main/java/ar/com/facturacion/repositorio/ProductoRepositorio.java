@@ -21,7 +21,7 @@ public interface ProductoRepositorio extends JpaRepository<Producto, Long>{
 
 	List <Producto> findAllByBorradoIsFalse();
 
-	List <Producto> findAllByCodigo(String codigo);
+	List <Producto> findAllByCodigo(String codigo); //consulta validador
 
 
 }
