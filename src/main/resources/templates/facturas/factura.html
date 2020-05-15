@@ -36,34 +36,32 @@
                     </div>
                     <table class="table table-bordered">
                         <tr class="text-center thead-dark">
-                            <th scope="col">Cantidad</th>
                             <th scope="col">Código</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Precio Unitario</th>
+                            <th scope="col">Cantidad</th>
                             <th scope="col">Subtotal</th>
                         </tr>
                         <tbody>
 
                         <th:block th:each="item : ${items}">
                             <tr class="text-center">
-                                <td th:text="${item.cantidad}"></td>
                                 <td th:text="${item.producto.codigo}"></td>
                                 <td th:text="${item.producto.descripcion}"></td>
                                 <td th:text="${item.precioUnitario}"></td>
+                                <td th:text="${item.cantidad}"></td>
                                 <td th:text="${item.subTotal}"></td>
                             </tr>
                         </th:block>
                         </tbody>
 
                         <tr class="text-center thead-dark">
-                            <th colspan="3" scope="col"></th>
-                            <th scope="col">Descripción</th>
+                            <th colspan="4" scope="col">Observaciones</th>
                             <th scope="col">Total</th>
                         </tr>
                         <tbody>
                         <tr class="text-center">
-                            <td colspan="3"></td>
-                            <td th:text="${pie.observaciones}"></td>
+                            <td colspan="4" th:text="${pie.observaciones}"></td>
                             <td th:text="${pie.total}"></td>
                         </tr>
                         </tbody>
