@@ -9,15 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 @Entity
 @Table(name="facturas_pie")
 public class Pie implements Serializable {
@@ -29,8 +22,6 @@ public class Pie implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	//@MapsId
 	@OneToOne
 	@JoinColumn(name = "facturas_encabezado_id")
 	private Encabezado encabezado;
