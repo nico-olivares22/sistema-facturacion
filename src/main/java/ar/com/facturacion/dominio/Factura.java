@@ -1,7 +1,4 @@
 package ar.com.facturacion.dominio;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.util.List;
 
 public class Factura {
