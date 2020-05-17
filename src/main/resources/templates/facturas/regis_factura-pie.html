@@ -17,6 +17,44 @@
 <body>
 <header th:replace="menu/header :: header"></header>
 <div class="container my-5">
+    <div class="card" style="margin-top: 20px;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" style="font-weight: bold">
+                        <h5 th:text="'Fecha:' + ${#temporals.format(encabezado.fecha, 'dd-MM-yyyy')}"></h5>
+                        <h5 th:text="'Número de Factura: '+${encabezado.numero}"></h5>
+                        <h5 th:text="'Letra: '+${encabezado.letra}"></h5>
+                        <h5 th:text="'Cliente: '+${encabezado.cliente.nombre}"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table" style="padding-top: 20px;">
+                <thead class="thead-dark">
+                <tr style="text-align: center">
+                    <th scope="col">Código</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio Unitario</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item_producto : ${items}" style="text-align: center">
+                    <td th:text="${item_producto.producto.codigo}"></td>
+                    <td th:text="${item_producto.producto.descripcion}"></td>
+                    <td th:text="${item_producto.precioUnitario}"></td>
+                    <td th:text="${item_producto.cantidad}"></td>
+                    <td th:text="${item_producto.subTotal}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <h3 style="text-align: center"> Agregar Factura Pie</h3>
     <div class="card" style="margin-top: 20px;">
         <div class="card-body">

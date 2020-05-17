@@ -115,9 +115,9 @@ public class FacturaController {
         Pie pie = new Pie();
         pie.setTotal(total);
         System.out.println(total);
-        //model.addAttribute("totalxd", total);
+        model.addAttribute("encabezado", idEncabezado);
+        model.addAttribute("items", items);
         model.addAttribute("pie", pie);
-
         return "/facturas/regis_factura-pie";
     }
 
