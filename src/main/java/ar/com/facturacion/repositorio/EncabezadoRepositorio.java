@@ -9,7 +9,6 @@ import java.util.List;
 public interface EncabezadoRepositorio extends JpaRepository<Encabezado, Long>{
     Encabezado getFirstByCliente_IdOrderByIdDesc(Long idCliente);
     Page <Encabezado> findAllByAnuladoIsFalseOrderByFecha(Pageable page);
-
     List<Encabezado> findAllByNumero(String numero); //consulta validador
     List <Encabezado> findAllByAnuladoIsFalse(); //consulta validador
 
