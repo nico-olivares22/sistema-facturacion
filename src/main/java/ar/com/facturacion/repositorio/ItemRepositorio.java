@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface ItemRepositorio extends JpaRepository<Item, Long>{
     List<Item> findAllByEncabezado_Id(Long encabezado_id);
-
 }

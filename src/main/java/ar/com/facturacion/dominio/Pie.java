@@ -2,7 +2,6 @@ package ar.com.facturacion.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,13 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table(name="facturas_pie")
 public class Pie implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1056979907920574376L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
