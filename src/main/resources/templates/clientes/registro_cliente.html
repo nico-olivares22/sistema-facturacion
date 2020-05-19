@@ -14,15 +14,21 @@
 <header th:replace="menu/header :: header"></header>
 <div class="container">
 
-    <div class="col-sm-6" th:if="${clienteInfo}" th:object="${clienteInfo}">
-        <div class="card mt-3">
-            <h3 class="card-header">Cliente</h3>
-            <div class="card-block">
-                <h4 class="card-title" th:text="*{codigo}"></h4>
-                <h5 class="card-subtitle mb-4 text-muted" th:text="*{nombre}"></h5>
-                <h5 class="card-subtitle mb-4 text-muted" th:text="*{direccion}"></h5>
-                <h6 class="card-subtitle mb-4 text-muted"><i class="fas fa-list-ul" aria-hidden="true"></i> [[*{cuit}]]</h6>
-            </div>
+    <div th:fragment="flash-warning" th:if="${mensajeWarning}!=null">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <h5 th:text="${mensajeWarning}" style="text-align: center"></h5>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div th:fragment="flash-success" th:if="${mensaje}!=null">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h5 th:text="${mensaje}" style="text-align: center"></h5>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     </div>
 
@@ -36,9 +42,12 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-fw fa-user fa" aria-hidden="true"></i></span>
                     <input th:field="*{codigo}" type="text"
-                           th:class="${#fields.hasErrors('codigo')} ? 'form-control form-control-danger' : (*{codigo == null} ? 'form-control' : 'form-control form-control-success')" placeholder="introduzca codigo del Cliente" required="required"/>
+                           th:class="${#fields.hasErrors('codigo')} ? 'form-control form-control-danger' : (*{codigo == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="introduzca codigo del Cliente" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('codigo')}" class="form-control-feedback">El codigo debe contener entre 4 y 13 caracteres</div>
+                <div th:if="${#fields.hasErrors('codigo')}" class="form-control-feedback">El codigo debe contener entre
+                    4 y 13 caracteres
+                </div>
             </div>
         </div>
 
@@ -47,9 +56,13 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-fw fa-user fa" aria-hidden="true"></i></span>
-                    <input th:field="*{nombre}" type="text" th:class="${#fields.hasErrors('nombre')} ? 'form-control form-control-danger' : (*{nombre == null} ? 'form-control' : 'form-control form-control-success')" placeholder="Ingrese nombre cliente" required="required"/>
+                    <input th:field="*{nombre}" type="text"
+                           th:class="${#fields.hasErrors('nombre')} ? 'form-control form-control-danger' : (*{nombre == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="Ingrese nombre cliente" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('nombre')}" class="form-control-feedback">El nombre debe contener entre 3 y 120 caracteres</div>
+                <div th:if="${#fields.hasErrors('nombre')}" class="form-control-feedback">El nombre debe contener entre
+                    3 y 120 caracteres
+                </div>
             </div>
         </div>
 
@@ -58,9 +71,13 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i></span>
-                    <input th:field="*{direccion}" type="text" th:class="${#fields.hasErrors('direccion')} ? 'form-control form-control-danger' : (*{direccion == null} ? 'form-control' : 'form-control form-control-success')" placeholder="Ingrese direccion del Cliente" required="required"/>
+                    <input th:field="*{direccion}" type="text"
+                           th:class="${#fields.hasErrors('direccion')} ? 'form-control form-control-danger' : (*{direccion == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="Ingrese direccion del Cliente" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('direccion')}" class="form-control-feedback">La direccion debe tener entre 6 y 120 caracteres</div>
+                <div th:if="${#fields.hasErrors('direccion')}" class="form-control-feedback">La direccion debe tener
+                    entre 6 y 120 caracteres
+                </div>
             </div>
         </div>
 
@@ -69,9 +86,13 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-fw fa-envelope" aria-hidden="true"></i></span>
-                    <input th:field="*{cuit}" type="text" th:class="${#fields.hasErrors('cuit')} ? 'form-control form-control-danger' : (*{cuit == null} ? 'form-control' : 'form-control form-control-success')" placeholder="Ingrese el cuit del Cliente" required="required"/>
+                    <input th:field="*{cuit}" type="text"
+                           th:class="${#fields.hasErrors('cuit')} ? 'form-control form-control-danger' : (*{cuit == null} ? 'form-control' : 'form-control form-control-success')"
+                           placeholder="Ingrese el cuit del Cliente" required="required"/>
                 </div>
-                <div th:if="${#fields.hasErrors('cuit')}" class="form-control-feedback">El cuit debe tener 11 caracteres</div>
+                <div th:if="${#fields.hasErrors('cuit')}" class="form-control-feedback">El cuit debe tener 11
+                    caracteres
+                </div>
             </div>
         </div>
 
@@ -84,6 +105,16 @@
 
     </form>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

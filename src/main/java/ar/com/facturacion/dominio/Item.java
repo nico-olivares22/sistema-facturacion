@@ -2,7 +2,6 @@ package ar.com.facturacion.dominio;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,18 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 @Entity
 @Table(name="facturas_items")
 public class Item implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3560761383569266746L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,21 +68,6 @@ public class Item implements Serializable {
 		this.cantidad = cantidad;
 		return cantidad.multiply(precioUnitario);
 	}
-	/*public BigDecimal getCalcularSubTotal(){
-		return subTotal;
-	}
-	public void setCalcularSubTotal(BigDecimal subTotal){
-		this.subTotal = subTotal;
-	}*/
-
-	/*public Double getCalcularSubTotal() {
-		return subTotal.doubleValue();
-	}
-	public void setSubTotal(Double subTotal) {
-		this.subTotal = subTotal;
-	}*/
-
-
 
 	@Override
 	public String toString() {

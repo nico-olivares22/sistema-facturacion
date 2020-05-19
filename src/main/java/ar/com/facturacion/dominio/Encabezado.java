@@ -2,11 +2,8 @@ package ar.com.facturacion.dominio;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.*;
-
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,16 +12,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="facturas_encabezado")
 public class Encabezado implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3479505724865821556L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private Long id;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate fecha;
 	private String numero;
 	private String letra;
