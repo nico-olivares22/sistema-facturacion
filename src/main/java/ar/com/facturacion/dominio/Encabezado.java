@@ -26,7 +26,7 @@ public class Encabezado implements Serializable {
 	private Cliente cliente;
 	@OneToMany(mappedBy = "encabezado")
 	private List<Item> items;
-	private Boolean anulado = true;
+	private Boolean anulado = false;
 	public Long getId() {
 		return id;
 	}
