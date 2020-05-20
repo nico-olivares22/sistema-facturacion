@@ -58,15 +58,13 @@ public class FacturaController {
         if (result.hasErrors()) {
             return "/facturas/regis_factura-encabezado";
         }
-        if (encabezadoRepositorio.findAllByNumero(encabezado.getNumero()).isEmpty() || encabezadoRepositorio.findAllByAnuladoIsFalse().isEmpty()) { //validador Número de Factura
+        if (encabezadoRepositorio.findAllByNumero(encabezado.getNumero()).isEmpty()) { //validador Número de Factura
             Cliente cliente = clienteRepositorio.findById(idCliente).get();
-            encabezado.setAnulado(false);
             encabezado.setCliente(cliente);
             encabezadoRepositorio.save(encabezado);
             return "redirect:/facturas/get-item/{idCliente}";
         } else {
             redirectAttributes.addFlashAttribute("encabezadoMensaje", "Error, Ese Número de Factura Existe");
-            System.out.println("Error");
             return "redirect:/facturas/get-encabezado/{idCliente}";
         }
 
@@ -74,10 +72,10 @@ public class FacturaController {
 
     @GetMapping("/get-item/{idCliente}")
     public String getItem(@PathVariable Long idCliente, Model model) {
-        Encabezado idEncabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);
+        Encabezado encabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);
         List<Producto> productos = productoRepositorio.findAllByBorradoIsFalse(); //traemos todos los productos
-        List<Item> items = itemRepositorio.findAllByEncabezado_Id(idEncabezado.getId());
-        model.addAttribute("encabezado", idEncabezado);
+        List<Item> items = itemRepositorio.findAllByEncabezado_Id(encabezado.getId());
+        model.addAttribute("encabezado", encabezado);
         model.addAttribute("items", items);
         model.addAttribute("productos", productos);
         model.addAttribute("item", new Item());
@@ -100,8 +98,8 @@ public class FacturaController {
 
     @GetMapping("/get-pie/{idCliente}")
     public String getPie(@PathVariable Long idCliente, Model model) {
-        Encabezado idEncabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);//Agregado
-        Long id = idEncabezado.getId();
+        Encabezado encabezado = encabezadoRepositorio.getFirstByCliente_IdOrderByIdDesc(idCliente);//Agregado
+        Long id = encabezado.getId();
         List<Item> items = itemRepositorio.findAllByEncabezado_Id(id);//Agregado
         BigDecimal total = BigDecimal.valueOf(0);
         for (Item item : items) {
@@ -109,8 +107,7 @@ public class FacturaController {
         }
         Pie pie = new Pie();
         pie.setTotal(total);
-        System.out.println(total);
-        model.addAttribute("encabezado", idEncabezado);
+        model.addAttribute("encabezado", encabezado);
         model.addAttribute("items", items);
         model.addAttribute("pie", pie);
         return "/facturas/regis_factura-pie";
